@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head></head>
+<html>
+<body>
+
+<h1>Change image dimensions</h1>
+
+<form action="{{ base_url }}/change" method="POST">
+    <input type="text" name="imgs" placeholder="IMGS" size=5>
+    :
+    <input type="text" name="x" placeholder="x" size=2>
+    <input type="text" name="y" placeholder="y" size=2>
+    <input type="submit" value="Submit">
+</form>
+
+
+<h1>Fit</h1>
+
+<form action="{{ base_url }}/fit" method="POST">
+    {% for k in range(imgs) %}
+        <h3>Image {{ k }}</h3>
+        {% for j in range(y) %}
+            {% for i in range(x) %}
+                <input type="checkbox" name="{{ k }}:{{ i }}-{{ j }}">
+            {% endfor %}
+            <br>
+        {% endfor %}
+    {% endfor %}
+    <br>
+    <input type="hidden" name="imgs" value={{ imgs }}>
+    <input type="hidden" name="x" value={{ x }}>
+    <input type="hidden" name="y" value={{ y }}>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html> 

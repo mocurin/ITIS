@@ -5,7 +5,28 @@
 <html>
 <body>
 
-<h1>Predicted</h1>
-⬛⬜
+<h1>Predict</h1>
+
+<h3>Image</h3>
+
+<form action="{{ base_url }}/predict/{{ token }}" method="POST">
+    {% for j in range(y) %}
+        {% for i in range(x) %}
+            <input type="checkbox" name="{{ i }}-{{ j }}" {% if image[i * y + j] == 1 %} checked {% endif %}>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Predict">
+</form>
+
+<h3>Randomize</h3>
+
+<form action="{{ base_url }}/predict/{{ token }}" method="GET">
+    <input type="text" name="randomize" value={{ randomize }} placeholder=0.1 size=3>
+    <br><br>
+    <input type="submit" value="Randomize">
+</form>
+
 </body>
 </html> 

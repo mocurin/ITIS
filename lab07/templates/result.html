@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<html>
+<body>
+
+<style>
+    .column {
+        float: left;
+        width: 25%;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<h1>Result</h1>
+
+<h3>Input</h3>
+{% for j in range(y) %}
+    {% for i in range(x) %}
+        {% if input[i * y + j] == 1 %} ⬛ {% else %} ⬜ {% endif %}
+    {% endfor %}
+    <br>
+{% endfor %}
+<h3>Output</h3>
+{% for j in range(y) %}
+    {% for i in range(x) %}
+        {% if output[-1][i * y + j] == 1 %} ⬛ {% else %} ⬜ {% endif %}
+    {% endfor %}
+    <br>
+{% endfor %}
+<p></p>
+<details>
+    <summary>Step by step</summary>
+    {% for step in output %}
+    <h5>Step {{ loop.index }}</h5>
+        {% for j in range(y) %}
+            {% for i in range(x) %}
+                {% if step[i * y + j] == 1 %} ⬛ {% else %} ⬜ {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+    {% endfor %}
+
+    <p>Reason: {% if state == 1 %} Found source img {% elif state == 2%} Sync stop {% elif state == 3 %} Async stop {% else %} null {% endif %}</p>
+</details>
+
+</body>
+</html> 

@@ -3,6 +3,9 @@ import numpy as np
 from enum import IntEnum
 
 
+np.set_printoptions(threshold=10000, linewidth=250)
+
+
 # Функционирование в синхронном режиме
 actF = lambda net, y: 1 if net > 0 else (-1 if net < 0 else y)
 
@@ -59,7 +62,7 @@ def predict_once(W, img):
     return [actF(net, i) for net, i in zip(Net, img)]
 
 
-def predict(W, imgs, img):
+def model_predict(W, imgs, img):
     Y = [img]
     while True:
         # Проверяем нужна ли остановка

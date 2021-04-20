@@ -65,13 +65,13 @@ def predict_once(W, img):
 def model_predict(W, imgs, img):
     Y = [img]
     while True:
-        # Проверяем нужна ли остановка
-        state = to_stop(Y, imgs)
-        if state != StopState.NONE:
-            return Y, state
-
         # Вычисляем результат итерации    
         y = predict_once(W, Y[-1])
         
         # Записываем результат итерации к остальным
         Y.append(y)
+
+        # Проверяем нужна ли остановка
+        state = to_stop(Y, imgs)
+        if state != StopState.NONE:
+            return Y, state
